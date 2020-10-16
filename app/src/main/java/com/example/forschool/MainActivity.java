@@ -33,18 +33,16 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
-    ListView listView;
-    ArrayAdapter<String> adapter;
-    ArrayAdapter<String> adapterforschool;
-    ArrayList<String> activitiesforchill = new ArrayList<>();
-    ArrayList<String> activiesforschool = new ArrayList<>();
-    TextView tx;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // create toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
+        //set toolbar to our activity
         setSupportActionBar(toolbar);
+        // this is fab button
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,51 +51,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .setAction("Action", null).show();
             }
         });
+
         drawer = findViewById(R.id.drawer_layout);
+        //add navigation view
         NavigationView navigationView = findViewById(R.id.nav_view);
+        // set listener to our navigation view
         navigationView.setNavigationItemSelectedListener(this);
-        listView = findViewById(R.id.listview);
-        activitiesforchill.add("Okkkk");
-        adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,activitiesforchill);
-        listView.setAdapter(adapter);
-        tx = findViewById(R.id.textView3);
-        int a = activitiesforchill.size();
-        String str = Integer.toString(a);
-        String str2 = "Activities:"+str;
-        tx.setText(str2);
-        adapterforschool= new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,activiesforschool);
-        activiesforschool.add("OL");
+
         }
+        // create menu for toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-    public void countofactivities(){
-        int a = activitiesforchill.size();
-        String str = Integer.toString(a);
-        String str2 = "Activities:"+str;
-        tx.setText(str2);
-    }
+    // listener of menu for toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
         if(id == R.id.add_new){
-            Toast.makeText(this,"ok",Toast.LENGTH_LONG).show();
-            activitiesforchill.add("ok");
-            adapter.notifyDataSetChanged();
-            listView.setAdapter(adapter);
-            countofactivities();
+
         }
          return true;
     }
-
+//navigation view listener
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.nav_home){
-            listView.setAdapter(adapterforschool);
+          // if you clicked to this button something must be done
         }
         drawer.closeDrawer(GravityCompat.START);
         return false;
