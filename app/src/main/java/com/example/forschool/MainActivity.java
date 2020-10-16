@@ -3,6 +3,7 @@ package com.example.forschool;
 import android.annotation.SuppressLint;
 import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -27,12 +28,21 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+
     DrawerLayout drawer;
+
+    RecyclerView recyclerView;
+    OlympiadAdapter olympiadAdapter;
+    LinearLayoutManager linearLayoutManager;
+    ArrayList<Olympiad> olympiads = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +67,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         // set listener to our navigation view
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        olympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
+        recyclerView = findViewById(R.id.activity_main__rv_olympiad_list);
+        olympiadAdapter = new OlympiadAdapter(olympiads, new OlympiadAdapter.Listener() {
+            @Override
+            public void onOlympiadClick(int position) {
+                Olympiad selectedOlympiad = olympiads.get(position);
+                Toast.makeText(getApplicationContext(), "Olympiad " + selectedOlympiad.getShortName() + " has selected", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        recyclerView.setAdapter(olympiadAdapter);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         }
         // create menu for toolbar
