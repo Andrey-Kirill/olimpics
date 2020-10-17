@@ -29,6 +29,7 @@ public class Autenfication extends AppCompatActivity {
         autenfication = FirebaseAuth.getInstance();
     }
 
+
     public void signup(View v) {
         if ((email.getText().toString().isEmpty() && passwod.getText().toString().isEmpty()) == false) {
             autenfication.createUserWithEmailAndPassword(email.getText().toString(), passwod.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
