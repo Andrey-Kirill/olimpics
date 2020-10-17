@@ -1,5 +1,6 @@
 package com.example.forschool;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,7 +31,7 @@ public class Autenfication extends AppCompatActivity {
     }
 
 
-    public void signup(View v) {
+    public void signup(final View v) {
         if ((email.getText().toString().isEmpty() && passwod.getText().toString().isEmpty()) == false) {
             autenfication.createUserWithEmailAndPassword(email.getText().toString(), passwod.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
@@ -39,6 +40,8 @@ public class Autenfication extends AppCompatActivity {
                         // Sign in success, update UI with the signed-in user's information
                         FirebaseUser user = autenfication.getCurrentUser();
                         Toast.makeText(getApplicationContext(),"Welcome "+user.getEmail(),Toast.LENGTH_SHORT).show();
+                        Intent i  = new Intent(v.getContext(),MainActivity.class);
+                        startActivity(i);
                     } else {
                         // If sign in fails, display a message to the user.
                         Toast.makeText(getApplicationContext(),"Can not create account",Toast.LENGTH_SHORT).show();

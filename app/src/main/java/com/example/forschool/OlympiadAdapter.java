@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.jetbrains.annotations.NotNull;
+
 
 import java.util.ArrayList;
 
@@ -62,7 +62,7 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
             nameTextView = itemView.findViewById(R.id.olympiad_name);
         }
 
-        public void bind(@NotNull Olympiad olympiad) {
+        public void bind(Olympiad olympiad) {
             posterCircleImageView.setImageResource(olympiad.getPoster());
             nameTextView.setText(olympiad.getShortName());
 
