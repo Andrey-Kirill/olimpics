@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">forschool</string>
+    <string name="app_name">Olympics</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -8,7 +8,8 @@
     <string name="action_settings">Settings</string>
     <string name="action_add_new">+ Add new activity</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="math">Math</string>
+    <string name="physics">Physics</string>
+    <string name="informatics">Informatics</string>
+    <string name="russian_language">Russian language</string>
 </resources>
