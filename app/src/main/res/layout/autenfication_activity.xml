@@ -49,19 +49,21 @@
         android:layout_marginTop="72dp"
         android:layout_marginEnd="160dp"
         android:layout_marginRight="160dp"
+        android:onClick="signin"
         android:text="Sign in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="165dp"
-        android:layout_marginEnd="278dp"
-        android:layout_marginRight="278dp"
+        android:layout_marginTop="175dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
         android:onClick="push"
         android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

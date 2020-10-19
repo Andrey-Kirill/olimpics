@@ -14,6 +14,9 @@ public class Olympiad {
 
     private int level;
     private int poster;
+    public Olympiad(){
+
+    }
 
     public Olympiad(String shortName, String fullName, String organization, int poster) {
         this.shortName = shortName;

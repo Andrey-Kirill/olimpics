@@ -82,7 +82,8 @@ public class Autenfication extends AppCompatActivity {
 
         String id = mDataBase.getKey();
         String txt = email.getText().toString();
-        Olympiad user = new Olympiad(id,txt,"test",15);
+        int poster = R.drawable.ic_launcher_background;
+        Olympiad user = new Olympiad(id,txt,"test",poster);
 
         mDataBase.push().setValue(user);
         Toast.makeText(v.getContext(),"ok",Toast.LENGTH_SHORT).show();
