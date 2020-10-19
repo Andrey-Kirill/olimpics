@@ -23,7 +23,7 @@ public class Autenfication extends AppCompatActivity {
     EditText passwod;
     FirebaseAuth autenfication;
     DatabaseReference mDataBase;
-    String USER_KEY = "User";
+    String USER_KEY = "matholympics";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,12 +77,12 @@ public class Autenfication extends AppCompatActivity {
         }
 
     }
-/*
+
     public void push(View v){
 
         String id = mDataBase.getKey();
         String txt = email.getText().toString();
-        User user = new User(id,txt);
+        Olympiad user = new Olympiad(id,txt,"test",15);
 
         mDataBase.push().setValue(user);
         Toast.makeText(v.getContext(),"ok",Toast.LENGTH_SHORT).show();
@@ -90,7 +90,6 @@ public class Autenfication extends AppCompatActivity {
    }
 
 
- */
 
 }
 
