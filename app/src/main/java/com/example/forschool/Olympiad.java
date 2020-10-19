@@ -7,6 +7,12 @@ public class Olympiad {
     private String shortName;
     private String fullName;
     private String organization;
+    private String description;
+    private String url;
+    private String date;
+    
+
+    private int level;
     private int poster;
 
     public Olympiad(String shortName, String fullName, String organization, int poster) {
