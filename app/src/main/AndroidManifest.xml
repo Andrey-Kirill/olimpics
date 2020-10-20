@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Autenfication"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,12 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Autenfication"/>
+        <activity android:name=".MainActivity"/>
         <activity android:name=".Settings"/>
         <activity android:name=".Calendaractivity"/>
-        <activity android:name=".Profile"/>
+        <activity android:name=".OlympiadActivity"/>
 
-        <activity android:name=".OlympiadActivity" />
 
     </application>
 
