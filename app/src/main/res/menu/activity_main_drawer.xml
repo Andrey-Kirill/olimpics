@@ -2,23 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/math"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/math" />
+            android:id="@+id/profile"
+            android:orderInCategory="100"
+            android:title="@string/profile"
+            android:icon="@drawable/ic_baseline_person_24"/>
         <item
-            android:id="@+id/physics"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/physics" />
+            android:id="@+id/calendar"
+            android:orderInCategory="100"
+            android:title="@string/calendar"
+            android:icon="@drawable/ic_baseline_calendar_today_24"/>
         <item
-            android:id="@+id/informatics"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/informatics" />
-        <item
-            android:id="@+id/russian_language"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/russian_language" />
+            android:id="@+id/action_settings"
+            android:orderInCategory="100"
+            android:title="@string/action_settings"
+            android:icon="@drawable/ic_baseline_settings_24"/>
+
     </group>
 </menu>

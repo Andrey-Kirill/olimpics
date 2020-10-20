@@ -1,6 +1,7 @@
 package com.example.forschool;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,28 +41,34 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
     DrawerLayout drawer;
-
     RecyclerView recyclerView;
-    OlympiadAdapter olympiadAdapter;
+    public static OlympiadAdapter olympiadAdapter;
     LinearLayoutManager linearLayoutManager;
-    ArrayList<Olympiad> olympiads = new ArrayList<>();
-
-
+    public static ArrayList<Olympiad> olympiads = new ArrayList<>();
     public  DatabaseReference mDataBase;
+    public static OlympiadAdapter olympiadAdapterINFORMATICS;
+    public static OlympiadAdapter olympiadAdapterPHYSICS;
+    public static OlympiadAdapter olympiadAdapterRUSSIAN_LANGUAGE;
+    public static ArrayList<Olympiad> olympiadsINFORMATICS = new ArrayList<>();
+    public static ArrayList<Olympiad> olympiadsPHYSICS = new ArrayList<>();
+    public static ArrayList<Olympiad> olympiadsRUSSIAN_LANGUAGE = new ArrayList<>();
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // create toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         //set toolbar to our activity
         setSupportActionBar(toolbar);
+        //initialize our database (Math is catalog on our firebase where we save our data in this example maths data)
+        mDataBase  = FirebaseDatabase.getInstance().getReference(Constants.PHYSICS);
         // this is fab button
-        mDataBase  = FirebaseDatabase.getInstance().getReference(Constants.MATH);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         // set listener to our navigation view
         navigationView.setNavigationItemSelectedListener(this);
-
         olympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
 
         getdata();
@@ -98,9 +105,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        CheckBox checkBox = (CheckBox) menu.findItem(R.id.math).getActionView();
+        checkBox.setText("Sample Text");
         return true;
+
     }
     public void getdata(){
+        //add firebase listener
         ValueEventListener vListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -108,12 +119,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if(olympiads.size()>0){
                     olympiads.clear();
                 }
+                //if we received something then delete old data and new data from firebase
                 for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     Olympiad user = ds.getValue(Olympiad.class);
                     assert user != null;
                     olympiads.add(user);
                 }
+                //notify our adapter if we got new data
                 olympiadAdapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(),Integer.toString(olympiads.size()),Toast.LENGTH_SHORT).show();
             }
@@ -122,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
             }
         };
-
         mDataBase.addValueEventListener(vListener);
 
     }
@@ -130,36 +142,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
-        if(id == R.id.add_new){
 
+        /*
+        if(id == R.id.action_settings){
+            Intent i = new Intent(getApplicationContext(),Settings.class);
+            startActivity(i);
         }
-        return true;
-    }
-    //navigation view listener
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        // if you clicked to this button something must be done
-
-        if(id == R.id.math){
+         */
+        if(id == R.id.math) {
             mDataBase = FirebaseDatabase.getInstance().getReference(Constants.MATH);
             Toast.makeText(getApplicationContext(),"Math olympics",Toast.LENGTH_SHORT).show();
             getdata();
+            toolbar.setTitle("Math");
         }
-        if(id == R.id.physics){
-            mDataBase = FirebaseDatabase.getInstance().getReference(Constants.PHYSICS);
-            Toast.makeText(getApplicationContext(),"Physics olympics",Toast.LENGTH_SHORT).show();
-            getdata();
-        }
+
         if(id == R.id.informatics){
             mDataBase = FirebaseDatabase.getInstance().getReference(Constants.INFORMATICS);
             Toast.makeText(getApplicationContext(),"Informatics olympics",Toast.LENGTH_SHORT).show();
             getdata();
+            toolbar.setTitle("Informatics");
+        }
+
+        if(id == R.id.physics){
+            mDataBase = FirebaseDatabase.getInstance().getReference(Constants.PHYSICS);
+            Toast.makeText(getApplicationContext(),"Physics olympics",Toast.LENGTH_SHORT).show();
+            getdata();
+            toolbar.setTitle("Physics");
         }
         if(id == R.id.russian_language){
             mDataBase = FirebaseDatabase.getInstance().getReference(Constants.RUSSIAN_LANGUAGE);
             Toast.makeText(getApplicationContext(),"Russian language olympics",Toast.LENGTH_SHORT).show();
             getdata();
+            toolbar.setTitle("Russian language");
+        }
+        return true;
+    }
+    //navigation view listener
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        // if you clicked to this button something must be done
+        if(id == R.id.action_settings){
+            Intent i = new Intent(getApplicationContext(),Settings.class);
+            startActivity(i);
         }
         drawer.closeDrawer(GravityCompat.START);
         return false;

@@ -23,7 +23,7 @@ public class Autenfication extends AppCompatActivity {
     EditText passwod;
     FirebaseAuth autenfication;
     DatabaseReference mDataBase;
-    String USER_KEY = "matholympics";
+    String USER_KEY = "physicsolympics";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
