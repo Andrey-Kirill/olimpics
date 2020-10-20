@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static ArrayList<Olympiad> olympiadsPHYSICS = new ArrayList<>();
     public static ArrayList<Olympiad> olympiadsRUSSIAN_LANGUAGE = new ArrayList<>();
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         // set listener to our navigation view
         navigationView.setNavigationItemSelectedListener(this);
-        olympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
 
         getdata();
         recyclerView = findViewById(R.id.activity_main__rv_olympiad_list);
@@ -92,6 +92,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onOlympiadClick(int position) {
                 Olympiad selectedOlympiad = olympiads.get(position);
+
+                Intent intent = new Intent(MainActivity.this, OlympiadActivity.class);
+                startActivity(intent);
+
                 Toast.makeText(getApplicationContext(), "Olympiad " + selectedOlympiad.getShortName() + " has selected", Toast.LENGTH_SHORT).show();
             }
         });
