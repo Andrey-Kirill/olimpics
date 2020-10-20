@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,9 +55,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static OlympiadAdapter olympiadAdapterINFORMATICS;
     public static OlympiadAdapter olympiadAdapterPHYSICS;
     public static OlympiadAdapter olympiadAdapterRUSSIAN_LANGUAGE;
-    public static ArrayList<Olympiad> olympiadsINFORMATICS = new ArrayList<>();
-    public static ArrayList<Olympiad> olympiadsPHYSICS = new ArrayList<>();
-    public static ArrayList<Olympiad> olympiadsRUSSIAN_LANGUAGE = new ArrayList<>();
     Toolbar toolbar;
 
     @Override
@@ -71,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDataBase  = FirebaseDatabase.getInstance().getReference(Constants.PHYSICS);
         // this is fab button
         FloatingActionButton fab = findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,7 +84,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         // set listener to our navigation view
         navigationView.setNavigationItemSelectedListener(this);
-
+        View headerview = navigationView.getHeaderView(0);
+        LinearLayout header = (LinearLayout) headerview.findViewById(R.id.ok);
+        header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
         getdata();
         recyclerView = findViewById(R.id.activity_main__rv_olympiad_list);
         olympiadAdapter = new OlympiadAdapter(olympiads, new OlympiadAdapter.Listener() {

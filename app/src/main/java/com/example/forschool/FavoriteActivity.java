@@ -21,7 +21,8 @@ public class FavoriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorite);
 
         recyclerView = findViewById(R.id.activity_favorite__rv_olympiad_list);
-        olympiadAdapter = new OlympiadAdapter(MainActivity.userProfile.getFavoriteOlympiads(), new OlympiadAdapter.Listener() {
+
+        olympiadAdapter = new OlympiadAdapter(UserProfile.serProfile.getFavoriteOlympiads(), new OlympiadAdapter.Listener() {
             @Override
             public void onOlympiadClick(int position) {
                 Olympiad selectedOlympiad = MainActivity.userProfile.getFavoriteOlympiads().get(position);
@@ -35,5 +36,7 @@ public class FavoriteActivity extends AppCompatActivity {
         recyclerView.setAdapter(olympiadAdapter);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+
     }
 }

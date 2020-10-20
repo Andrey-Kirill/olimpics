@@ -17,9 +17,7 @@ import static com.example.forschool.MainActivity.olympiadAdapterINFORMATICS;
 import static com.example.forschool.MainActivity.olympiadAdapterPHYSICS;
 import static com.example.forschool.MainActivity.olympiadAdapterRUSSIAN_LANGUAGE;
 import static com.example.forschool.MainActivity.olympiads;
-import static com.example.forschool.MainActivity.olympiadsINFORMATICS;
-import static com.example.forschool.MainActivity.olympiadsPHYSICS;
-import static com.example.forschool.MainActivity.olympiadsRUSSIAN_LANGUAGE;
+
 
 public class Constants {
     public static String MATH = "matholympics";
