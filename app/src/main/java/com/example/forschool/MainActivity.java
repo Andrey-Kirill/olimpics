@@ -198,6 +198,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent i = new Intent(getApplicationContext(),Settings.class);
             startActivity(i);
         }
+        if(id == R.id.calendar){
+            Intent i = new Intent(getApplicationContext(),Calendaractivity.class);
+            startActivity(i);
+        }
         drawer.closeDrawer(GravityCompat.START);
         return false;
     }
