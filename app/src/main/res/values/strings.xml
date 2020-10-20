@@ -13,4 +13,5 @@
     <string name="physics">Physics</string>
     <string name="informatics">Informatics</string>
     <string name="russian_language">Russian language</string>
+    <string name="favorite">Favorite</string>
 </resources>

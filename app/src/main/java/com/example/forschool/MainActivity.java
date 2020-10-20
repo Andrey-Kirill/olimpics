@@ -57,12 +57,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static ArrayList<Olympiad> olympiadsINFORMATICS = new ArrayList<>();
     public static ArrayList<Olympiad> olympiadsPHYSICS = new ArrayList<>();
     public static ArrayList<Olympiad> olympiadsRUSSIAN_LANGUAGE = new ArrayList<>();
+    public static UserProfile userProfile;
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        userProfile = new UserProfile("asdafsa");
+
         // create toolbar
         toolbar = findViewById(R.id.toolbar);
         //set toolbar to our activity
@@ -190,6 +194,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // if you clicked to this button something must be done
         if(id == R.id.action_settings){
             Intent i = new Intent(getApplicationContext(),Settings.class);
+            startActivity(i);
+        }
+        if (id == R.id.favorite) {
+            Intent i = new Intent(getApplicationContext(), FavoriteActivity.class);
             startActivity(i);
         }
         drawer.closeDrawer(GravityCompat.START);

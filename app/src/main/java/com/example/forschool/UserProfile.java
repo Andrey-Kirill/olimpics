@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class UserProfile {
 
-    ArrayList<Olympiad> favoriteOlympiads;
+    ArrayList<Olympiad> favoriteOlympiads = new ArrayList<>();
 
     String name;
     String surname;
@@ -12,16 +12,21 @@ public class UserProfile {
     String password;
     String email;
 
-    String generateUsedID() {
-        return "sample ID";
-    }
-
-    public UserProfile(String name, String surname, String password, String email) {
+    public UserProfile(String name, String surname, String password, String email, String id) {
         this.name = name;
         this.surname = surname;
         this.password = password;
         this.email = email;
-        this.id = generateUsedID();
+        this.id = id;
+    }
+
+    public UserProfile(String id) {
+        this.id = id;
+
+        favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
+        favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
+        favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
+        favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
     }
 
     public void addOlympiadToFavorite(Olympiad olympiad) {
