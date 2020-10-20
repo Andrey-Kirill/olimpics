@@ -23,7 +23,7 @@ public class Autenfication extends AppCompatActivity {
     EditText passwod;
     FirebaseAuth autenfication;
     DatabaseReference mDataBase;
-    String USER_KEY = "physicsolympics";
+    String USER_KEY = "russianlanguageolympics";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +33,6 @@ public class Autenfication extends AppCompatActivity {
         autenfication = FirebaseAuth.getInstance();
         mDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
     }
-
 
     public void signup(final View v) {
         if ((email.getText().toString().isEmpty() && passwod.getText().toString().isEmpty()) == false) {
