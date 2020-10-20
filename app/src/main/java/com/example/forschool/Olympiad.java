@@ -6,7 +6,7 @@ public class Olympiad {
 
     private String shortName;
     private String fullName;
-    private String organization;
+    private String organizer;
     private String description;
     private String url;
     private String date;
@@ -14,14 +14,15 @@ public class Olympiad {
 
     private int level;
     private int poster;
+
     public Olympiad(){
 
     }
 
-    public Olympiad(String shortName, String fullName, String organization, int poster) {
+    public Olympiad(String shortName, String fullName, String organizer, int poster) {
         this.shortName = shortName;
         this.fullName = fullName;
-        this.organization = organization;
+        this.organizer = organizer;
         this.poster = poster;
     }
 
@@ -41,12 +42,12 @@ public class Olympiad {
         this.fullName = fullName;
     }
 
-    public String getOrganization() {
-        return organization;
+    public String getOrganizer() {
+        return organizer;
     }
 
-    public void setOrganization(String organization) {
-        this.organization = organization;
+    public void setOrganization(String organizer) {
+        this.organizer = organizer;
     }
 
     public int getPoster() {

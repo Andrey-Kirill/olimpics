@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         getdata();
+
         recyclerView = findViewById(R.id.activity_main__rv_olympiad_list);
         olympiadAdapter = new OlympiadAdapter(olympiads, new OlympiadAdapter.Listener() {
             @Override
