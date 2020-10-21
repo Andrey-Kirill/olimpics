@@ -12,7 +12,9 @@ public class UserProfile {
     String password;
     String email;
 
-    public UserProfile(String name, String surname, String password, String email, String id) {
+    private static UserProfile userProfile;
+
+    private UserProfile(String name, String surname, String password, String email, String id) {
         this.name = name;
         this.surname = surname;
         this.password = password;
@@ -20,7 +22,7 @@ public class UserProfile {
         this.id = id;
     }
 
-    public UserProfile(String id) {
+    private UserProfile(String id) {
         this.id = id;
 
 /*
@@ -37,6 +39,18 @@ public class UserProfile {
 
     public ArrayList<Olympiad> getFavoriteOlympiads() {
         return favoriteOlympiads;
+    }
+
+    public static UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public static void setUserProfile(String name, String surname, String password, String email, String id) {
+        userProfile = new UserProfile(name, surname, password, email, id);
+    }
+
+    public static void setUserProfile(String id) {
+        userProfile = new UserProfile(id);
     }
 
     public String getName() {

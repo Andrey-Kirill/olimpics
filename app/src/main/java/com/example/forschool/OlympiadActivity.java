@@ -33,9 +33,9 @@ public class OlympiadActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_olympiad);
-        toolbar = findViewById(R.id.toolbar1);
+        //toolbar = findViewById(R.id.toolbar1);
         //set toolbar to our activity
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
 
     }
