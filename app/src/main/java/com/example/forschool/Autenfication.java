@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.UUID;
+
 public class Autenfication extends AppCompatActivity {
     EditText email;
     EditText passwod;
@@ -78,11 +80,11 @@ public class Autenfication extends AppCompatActivity {
     }
 
     public void push(View v){
-
+        String uniqueID = UUID.randomUUID().toString();
         String id = mDataBase.getKey();
         String txt = email.getText().toString();
         int poster = R.drawable.ic_launcher_background;
-        Olympiad user = new Olympiad(id,txt,"test",poster);
+        Olympiad user = new Olympiad(id,txt,"test1",poster);
 
         mDataBase.push().setValue(user);
         Toast.makeText(v.getContext(),"ok",Toast.LENGTH_SHORT).show();

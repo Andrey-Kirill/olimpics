@@ -20,5 +20,37 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
+            android:onClick="add_to_favorite"
+            android:text="+ Add to favorite"
+            app:layout_constraintEnd_toStartOf="@+id/button13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:onClick="delete_favorite"
+            android:text="- Delet from favorite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
