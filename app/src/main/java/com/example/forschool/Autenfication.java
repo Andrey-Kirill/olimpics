@@ -88,6 +88,10 @@ public class Autenfication extends AppCompatActivity {
         Toast.makeText(v.getContext(),"ok",Toast.LENGTH_SHORT).show();
 
    }
+   public void guest(View v){
+        Intent i = new Intent(Autenfication.this,MainActivity.class);
+        startActivity(i);
+   }
 
 
 
