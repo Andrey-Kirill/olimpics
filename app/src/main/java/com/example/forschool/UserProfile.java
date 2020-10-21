@@ -37,7 +37,7 @@ public class UserProfile {
         favoriteOlympiads.add(olympiad);
     }
 
-    public ArrayList<Olympiad> getFavoriteOlympiads() {
+    public static  ArrayList<Olympiad> getFavoriteOlympiads() {
         return favoriteOlympiads;
     }
 

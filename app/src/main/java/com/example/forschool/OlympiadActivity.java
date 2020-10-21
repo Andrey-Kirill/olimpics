@@ -20,8 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import static com.example.forschool.FavoriteActivity.mdata;
-import static com.example.forschool.FavoriteActivity.olympiadAdapter;
+
 import static com.example.forschool.MainActivity.id;
 import static com.example.forschool.MainActivity.mDataBaseid;
 
@@ -86,8 +85,8 @@ public class OlympiadActivity extends AppCompatActivity {
       if(adeed == false) {
           UserProfile.favoriteOlympiads.add(MainActivity.olympiads.get(MainActivity.number_of_olympiad));
           mDataBaseid.removeValue();
-          UserProfile uo = new UserProfile(MainActivity.idforclasses);
-          ArrayList<Olympiad> a = uo.favoriteOlympiads;
+
+          ArrayList<Olympiad> a = UserProfile.favoriteOlympiads;
           for (Olympiad ol : a) {
               mDataBaseid.push().setValue(ol);
           }
@@ -106,8 +105,8 @@ public class OlympiadActivity extends AppCompatActivity {
             }
         }
         mDataBaseid.removeValue();
-        UserProfile uo = new UserProfile(MainActivity.idforclasses);
-        ArrayList<Olympiad> a = uo.favoriteOlympiads;
+
+        ArrayList<Olympiad> a = UserProfile.favoriteOlympiads;
         for(Olympiad ol:a){
             mDataBaseid.push().setValue(ol);
         }

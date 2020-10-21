@@ -22,10 +22,10 @@ public class FavoriteActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.activity_favorite__rv_olympiad_list);
 
-        olympiadAdapter = new OlympiadAdapter(UserProfile.serProfile.getFavoriteOlympiads(), new OlympiadAdapter.Listener() {
+        olympiadAdapter = new OlympiadAdapter(UserProfile.getFavoriteOlympiads(), new OlympiadAdapter.Listener() {
             @Override
             public void onOlympiadClick(int position) {
-                Olympiad selectedOlympiad = MainActivity.userProfile.getFavoriteOlympiads().get(position);
+                Olympiad selectedOlympiad = UserProfile.getFavoriteOlympiads().get(position);
 
                 Intent intent = new Intent(FavoriteActivity.this, OlympiadActivity.class);
                 startActivity(intent);
