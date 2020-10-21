@@ -1,6 +1,8 @@
 package com.example.forschool;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -51,7 +53,7 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
         return olympiads.size();
     }
 
-    static final class OlympiadViewHolder extends RecyclerView.ViewHolder {
+    static final class OlympiadViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
 
         private final CircleImageView posterCircleImageView;
         private final TextView nameTextView;
@@ -60,6 +62,8 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
             super(itemView);
             posterCircleImageView = itemView.findViewById(R.id.olympiad_item__civ_poster);
             nameTextView = itemView.findViewById(R.id.olympiad_name);
+
+            itemView.setOnCreateContextMenuListener(this);
         }
 
         public void bind(Olympiad olympiad) {
@@ -68,7 +72,17 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
 
         }
 
+        @Override
+        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+
+            contextMenu.setHeaderTitle(R.string.recycle_view_context_menu_title);
+            contextMenu.add(0, 0, 0, R.string.recycle_view_context_menu_favorite);
+            contextMenu.add(0, 1, 0, R.string.recycle_view_context_menu_share);
+        }
+
     }
+
+
 
     interface Listener {
 

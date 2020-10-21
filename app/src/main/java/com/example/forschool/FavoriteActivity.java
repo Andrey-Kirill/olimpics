@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FavoriteActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private OlympiadAdapter olympiadAdapter;
     LinearLayoutManager linearLayoutManager;
 
     @Override
@@ -20,11 +18,10 @@ public class FavoriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
 
-        recyclerView = findViewById(R.id.activity_favorite__rv_olympiad_list);
+        RecyclerView recyclerView = findViewById(R.id.activity_favorite__rv_olympiad_list);
 
 
-
-        olympiadAdapter = new OlympiadAdapter(UserProfile.getUserProfile().getFavoriteOlympiads(), new OlympiadAdapter.Listener() {
+        OlympiadAdapter olympiadAdapter = new OlympiadAdapter(UserProfile.getUserProfile().getFavoriteOlympiads(), new OlympiadAdapter.Listener() {
             @Override
             public void onOlympiadClick(int position) {
                 Olympiad selectedOlympiad = UserProfile.getUserProfile().getFavoriteOlympiads().get(position);

@@ -14,4 +14,7 @@
     <string name="informatics">Informatics</string>
     <string name="russian_language">Russian language</string>
     <string name="favorite">Favorite</string>
+    <string name="recycle_view_context_menu_title">Select The Action</string>
+    <string name="recycle_view_context_menu_favorite">favorite</string>
+    <string name="recycle_view_context_menu_share">share</string>
 </resources>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -45,6 +46,9 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    final int CONTEXT_MENU_FAVORITE = 0;
+    final int CONTEXT_MENU_SHARE = 1;
 
     DrawerLayout drawer;
     RecyclerView recyclerView;
@@ -94,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
         getdata();
+
         recyclerView = findViewById(R.id.activity_main__rv_olympiad_list);
         olympiadAdapter = new OlympiadAdapter(olympiads, new OlympiadAdapter.Listener() {
             @Override
@@ -204,5 +209,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawer.closeDrawer(GravityCompat.START);
         return false;
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        Log.d("name", "test");
+        if (item.getItemId() == CONTEXT_MENU_FAVORITE) {
+            Toast.makeText(this, "favorite", Toast.LENGTH_SHORT).show();
+        }
+        if (item.getItemId() == CONTEXT_MENU_SHARE) {
+            Toast.makeText(this, "share", Toast.LENGTH_SHORT).show();
+        }
+
+        return super.onContextItemSelected(item);
     }
 }

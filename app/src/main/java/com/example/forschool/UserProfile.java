@@ -24,15 +24,22 @@ public class UserProfile {
 
     private UserProfile(String id) {
         this.id = id;
-
-        favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
-        favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
-        favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
-        favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
     }
 
     public void addOlympiadToFavorite(Olympiad olympiad) {
         favoriteOlympiads.add(olympiad);
+    }
+
+    public void removeOlympiadFromFavorite(Olympiad olympiad) {
+        favoriteOlympiads.remove(olympiad);
+    }
+
+    public void updateOlympiad(Olympiad olympiad) {
+        if (favoriteOlympiads.contains(olympiad)) {
+            favoriteOlympiads.remove(olympiad);
+        } else {
+            favoriteOlympiads.add(olympiad);
+        }
     }
 
     public ArrayList<Olympiad> getFavoriteOlympiads() {
