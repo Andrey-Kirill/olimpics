@@ -26,8 +26,8 @@ import static com.example.forschool.MainActivity.mDataBaseid;
 
 public class OlympiadActivity extends AppCompatActivity {
     Toolbar toolbar;
-    ArrayList<Olympiad> test = new ArrayList<>();
-    boolean adeed = true;
+    public static ArrayList<Olympiad> test = new ArrayList<>();
+    public static boolean adeed = true;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,53 +47,7 @@ public class OlympiadActivity extends AppCompatActivity {
     }
 
     public void add_to_favorite(View v) {
-
-        ValueEventListener vListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                if(test.size()>0){
-                    test.clear();
-                }
-                //if we received something then delete old data and new data from firebase
-                for(DataSnapshot ds : dataSnapshot.getChildren())
-                {
-                    Olympiad user = ds.getValue(Olympiad.class);
-                    assert user != null;
-                    test.add(user);
-                }
-                for(Olympiad ol:test) {
-                    if (ol.getOrganizer().equals(MainActivity.olympiads.get(MainActivity.number_of_olympiad).getOrganizer())) {
-                        Toast.makeText(getApplicationContext(), "Already", Toast.LENGTH_LONG).show();
-                        adeed = true;
-                        break;
-                    }else{
-                        adeed = false;
-                    }
-                }
-
-                //notify our adapter if we got new data
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-            }
-        };
-        mDataBaseid.addValueEventListener(vListener);
-
-
-      if(adeed == false) {
-          UserProfile.favoriteOlympiads.add(MainActivity.olympiads.get(MainActivity.number_of_olympiad));
-          mDataBaseid.removeValue();
-
-          ArrayList<Olympiad> a = UserProfile.favoriteOlympiads;
-          for (Olympiad ol : a) {
-              mDataBaseid.push().setValue(ol);
-          }
-          adeed = true;
-      }
-
-
+        UserProfile.addOlympiadToFavorite(MainActivity.olympiads.get(MainActivity.number_of_olympiad));
 
     }
 

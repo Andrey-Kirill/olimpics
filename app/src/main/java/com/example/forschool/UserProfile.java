@@ -1,6 +1,17 @@
 package com.example.forschool;
 
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+
+import static com.example.forschool.MainActivity.mDataBaseid;
+import static com.example.forschool.OlympiadActivity.test;
 
 public class UserProfile {
 
@@ -33,8 +44,53 @@ public class UserProfile {
  */
     }
 
-    public void addOlympiadToFavorite(Olympiad olympiad) {
-        favoriteOlympiads.add(olympiad);
+    public static void addOlympiadToFavorite(final Olympiad olympiad) {
+        ValueEventListener vListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if(test.size()>0){
+                    test.clear();
+                }
+                //if we received something then delete old data and new data from firebase
+                for(DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    Olympiad user = ds.getValue(Olympiad.class);
+                    assert user != null;
+                    test.add(user);
+                }
+                for(Olympiad ol:test) {
+                    if (ol.getOrganizer().equals(olympiad.getOrganizer())) {
+                        OlympiadActivity.adeed = true;
+                        break;
+                    }else{
+                        OlympiadActivity.adeed = false;
+                    }
+                }
+
+                //notify our adapter if we got new data
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        mDataBaseid.addValueEventListener(vListener);
+
+
+
+
+        if(OlympiadActivity.adeed == false) {
+            UserProfile.favoriteOlympiads.add(olympiad);
+            mDataBaseid.removeValue();
+
+            ArrayList<Olympiad> a = UserProfile.favoriteOlympiads;
+            for (Olympiad ol : a) {
+                mDataBaseid.push().setValue(ol);
+            }
+            OlympiadActivity.adeed = true;
+        }
+
     }
 
     public void removeOlympiadFromFavorite(Olympiad olympiad) {
