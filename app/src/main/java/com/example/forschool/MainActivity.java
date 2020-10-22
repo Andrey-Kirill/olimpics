@@ -2,6 +2,7 @@ package com.example.forschool;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +43,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import static com.example.forschool.UserProfile.favoriteOlympiads;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,11 +59,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     LinearLayoutManager linearLayoutManager;
     public static ArrayList<Olympiad> olympiads = new ArrayList<>();
     public  DatabaseReference mDataBase;
-    public static OlympiadAdapter olympiadAdapterINFORMATICS;
-    public static OlympiadAdapter olympiadAdapterPHYSICS;
-    public static OlympiadAdapter olympiadAdapterRUSSIAN_LANGUAGE;
+    public static DatabaseReference mDataBaseid;
+    public ArrayList<String> idfirebase;
     Toolbar toolbar;
+    public SharedPreferences sp;
+    public String uniqueID;
+    static  String id = "";
+    public static String idforclasses;
+    public static int number_of_olympiad;
+    @Override
+    public void onStart(){
 
+        loaddata();
+        if(id.equals("")){
+            uniqueID = UUID.randomUUID().toString();
+            mDataBaseid = FirebaseDatabase.getInstance().getReference(uniqueID);
+            favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
+            savedata();
+            mDataBaseid.push().setValue(uniqueID);
+        }else{
+            idforclasses= id;
+            mDataBaseid = FirebaseDatabase.getInstance().getReference(id);
+
+        }
+        super.onStart();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //initialize our database (Math is catalog on our firebase where we save our data in this example maths data)
         mDataBase  = FirebaseDatabase.getInstance().getReference(Constants.PHYSICS);
         // this is fab button
+        mDataBaseid = FirebaseDatabase.getInstance().getReference(id);
+        idfirebase = new ArrayList<>();
         FloatingActionButton fab = findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
@@ -103,8 +127,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         olympiadAdapter = new OlympiadAdapter(olympiads, new OlympiadAdapter.Listener() {
             @Override
             public void onOlympiadClick(int position) {
+                number_of_olympiad = position;
                 Olympiad selectedOlympiad = olympiads.get(position);
-
                 Intent intent = new Intent(MainActivity.this, OlympiadActivity.class);
                 startActivity(intent);
 
@@ -115,6 +139,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+    }
+    public void savedata(){
+        sp = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putString("id",uniqueID);
+        ed.commit();
+    }
+    public void loaddata(){
+        sp = getPreferences(MODE_PRIVATE);
+        id = sp.getString("id","");
     }
     // create menu for toolbar
     @Override
@@ -154,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDataBase.addValueEventListener(vListener);
 
     }
+
     // listener of menu for toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -205,6 +240,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         if(id == R.id.calendar){
             Intent i = new Intent(getApplicationContext(),Calendaractivity.class);
+            startActivity(i);
+            loaddata();
+
+           Toast.makeText(getApplicationContext(), mDataBaseid.getKey(),Toast.LENGTH_LONG).show();
+        }
+        if(id == R.id.action_settings1){
+            Intent i = new Intent(MainActivity.this,FavoriteActivity.class);
             startActivity(i);
         }
         drawer.closeDrawer(GravityCompat.START);

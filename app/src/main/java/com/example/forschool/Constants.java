@@ -12,11 +12,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import static com.example.forschool.MainActivity.olympiadAdapter;
-import static com.example.forschool.MainActivity.olympiadAdapterINFORMATICS;
-import static com.example.forschool.MainActivity.olympiadAdapterPHYSICS;
-import static com.example.forschool.MainActivity.olympiadAdapterRUSSIAN_LANGUAGE;
-import static com.example.forschool.MainActivity.olympiads;
 
 
 public class Constants {
@@ -24,5 +19,4 @@ public class Constants {
     public static String INFORMATICS = "informaticsolympics";
     public static String PHYSICS = "physicsolympics";
     public static String RUSSIAN_LANGUAGE = "russianlanguageolympics";
-
 }
