@@ -21,22 +21,24 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 
-import static com.example.forschool.MainActivity.id;
 import static com.example.forschool.MainActivity.mDataBaseid;
 
 public class OlympiadActivity extends AppCompatActivity {
     Toolbar toolbar;
     public static ArrayList<Olympiad> test = new ArrayList<>();
-    public static boolean adeed = true;
+    public static boolean added = true;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_olympiad);
-        //toolbar = findViewById(R.id.toolbar1);
+        toolbar = findViewById(R.id.toolbar1);
         //set toolbar to our activity
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
-
+        if(UserProfile.favoriteOlympiads.size() == 0) {
+            Toast.makeText(this, Integer.toString(UserProfile.favoriteOlympiads.size()), Toast.LENGTH_LONG).show();
+            mDataBaseid.push().setValue(new Olympiad("test","test","test12",12));
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,21 +51,26 @@ public class OlympiadActivity extends AppCompatActivity {
     public void add_to_favorite(View v) {
         UserProfile.addOlympiadToFavorite(MainActivity.olympiads.get(MainActivity.number_of_olympiad));
 
+
     }
 
     public void delete_favorite(View v) {
 
-        for(Olympiad op:UserProfile.favoriteOlympiads){
-            if(op.equals(MainActivity.olympiads.get(MainActivity.number_of_olympiad))){
-                UserProfile.favoriteOlympiads.remove(MainActivity.olympiads.get(MainActivity.number_of_olympiad));
+        Iterator <Olympiad> it = UserProfile.favoriteOlympiads.iterator();
+        while (it.hasNext()){
+            Olympiad ol = it.next();
+            if(ol.getOrganizer().equals(MainActivity.olympiads.get(MainActivity.number_of_olympiad).getOrganizer())){
+                it.remove();
             }
         }
+
         mDataBaseid.removeValue();
 
         ArrayList<Olympiad> a = UserProfile.favoriteOlympiads;
         for(Olympiad ol:a){
             mDataBaseid.push().setValue(ol);
         }
+
 
 
     }

@@ -20,7 +20,7 @@ import static com.example.forschool.OlympiadActivity.test;
 public class FavoriteActivity extends AppCompatActivity {
 
     LinearLayoutManager linearLayoutManager;
-
+    public static OlympiadAdapter olympiadAdapter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +28,7 @@ public class FavoriteActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.activity_favorite__rv_olympiad_list);
 
-        getdata();
-        OlympiadAdapter olympiadAdapter = new OlympiadAdapter(UserProfile.getUserProfile().getFavoriteOlympiads(), new OlympiadAdapter.Listener() {
+        olympiadAdapter = new OlympiadAdapter(UserProfile.getUserProfile().getFavoriteOlympiads(), new OlympiadAdapter.Listener() {
             @Override
             public void onOlympiadClick(int position) {
                 Olympiad selectedOlympiad = UserProfile.getUserProfile().getFavoriteOlympiads().get(position);
@@ -43,33 +42,8 @@ public class FavoriteActivity extends AppCompatActivity {
         recyclerView.setAdapter(olympiadAdapter);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        UserProfile.favoriteOlympiads = Firebase.get_about_olympics(UserProfile.getFavoriteOlympiads(), mDataBaseid,olympiadAdapter);
 
 
-    }
-    public void getdata(){
-        ValueEventListener vListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                if(UserProfile.favoriteOlympiads.size()>0){
-                    UserProfile.favoriteOlympiads.clear();
-                }
-                //if we received something then delete old data and new data from firebase
-                for(DataSnapshot ds : dataSnapshot.getChildren())
-                {
-                    Olympiad user = ds.getValue(Olympiad.class);
-                    assert user != null;
-                    UserProfile.favoriteOlympiads.add(user);
-                }
-
-
-                //notify our adapter if we got new data
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        mDataBaseid.addValueEventListener(vListener);
     }
 }

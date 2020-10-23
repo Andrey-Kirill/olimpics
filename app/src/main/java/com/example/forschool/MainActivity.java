@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static int number_of_olympiad;
     @Override
     public void onStart(){
-
         loaddata();
         if(id.equals("")){
             uniqueID = UUID.randomUUID().toString();
@@ -80,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else{
             idforclasses= id;
             mDataBaseid = FirebaseDatabase.getInstance().getReference(id);
+            UserProfile.favoriteOlympiads = Firebase.load_favorite(UserProfile.getFavoriteOlympiads(), mDataBaseid);
 
         }
         super.onStart();
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
-        getdata();
+
 
         recyclerView = findViewById(R.id.activity_main__rv_olympiad_list);
         olympiadAdapter = new OlympiadAdapter(olympiads, new OlympiadAdapter.Listener() {
@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setAdapter(olympiadAdapter);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        olympiads = Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
 
     }
     public void savedata(){
@@ -160,34 +161,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
 
     }
-    public void getdata(){
-        //add firebase listener
-        ValueEventListener vListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                if(olympiads.size()>0){
-                    olympiads.clear();
-                }
-                //if we received something then delete old data and new data from firebase
-                for(DataSnapshot ds : dataSnapshot.getChildren())
-                {
-                    Olympiad user = ds.getValue(Olympiad.class);
-                    assert user != null;
-                    olympiads.add(user);
-                }
-                //notify our adapter if we got new data
-                olympiadAdapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(),Integer.toString(olympiads.size()),Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-            }
-        };
-        mDataBase.addValueEventListener(vListener);
-
-    }
 
     // listener of menu for toolbar
     @Override
@@ -203,27 +176,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.math) {
             mDataBase = FirebaseDatabase.getInstance().getReference(Constants.MATH);
             Toast.makeText(getApplicationContext(),"Math olympics",Toast.LENGTH_SHORT).show();
-            getdata();
+            olympiads = Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
             toolbar.setTitle("Math");
         }
 
         if(id == R.id.informatics){
             mDataBase = FirebaseDatabase.getInstance().getReference(Constants.INFORMATICS);
             Toast.makeText(getApplicationContext(),"Informatics olympics",Toast.LENGTH_SHORT).show();
-            getdata();
+            olympiads = Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
             toolbar.setTitle("Informatics");
         }
 
         if(id == R.id.physics){
             mDataBase = FirebaseDatabase.getInstance().getReference(Constants.PHYSICS);
             Toast.makeText(getApplicationContext(),"Physics olympics",Toast.LENGTH_SHORT).show();
-            getdata();
+            olympiads = Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
             toolbar.setTitle("Physics");
         }
         if(id == R.id.russian_language){
             mDataBase = FirebaseDatabase.getInstance().getReference(Constants.RUSSIAN_LANGUAGE);
             Toast.makeText(getApplicationContext(),"Russian language olympics",Toast.LENGTH_SHORT).show();
-            getdata();
+            olympiads = Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
             toolbar.setTitle("Russian language");
         }
         return true;

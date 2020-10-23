@@ -56,15 +56,15 @@ public class UserProfile {
                 for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     Olympiad user = ds.getValue(Olympiad.class);
-                    assert user != null;
+
                     test.add(user);
                 }
                 for(Olympiad ol:test) {
                     if (ol.getOrganizer().equals(olympiad.getOrganizer())) {
-                        OlympiadActivity.adeed = true;
+                        OlympiadActivity.added = true;
                         break;
                     }else{
-                        OlympiadActivity.adeed = false;
+                        OlympiadActivity.added = false;
                     }
                 }
 
@@ -77,10 +77,7 @@ public class UserProfile {
         };
         mDataBaseid.addValueEventListener(vListener);
 
-
-
-
-        if(OlympiadActivity.adeed == false) {
+        if(OlympiadActivity.added == false) {
             UserProfile.favoriteOlympiads.add(olympiad);
             mDataBaseid.removeValue();
 
@@ -88,10 +85,12 @@ public class UserProfile {
             for (Olympiad ol : a) {
                 mDataBaseid.push().setValue(ol);
             }
-            OlympiadActivity.adeed = true;
+            OlympiadActivity.added = true;
         }
 
     }
+
+
 
     public void removeOlympiadFromFavorite(Olympiad olympiad) {
         favoriteOlympiads.remove(olympiad);
