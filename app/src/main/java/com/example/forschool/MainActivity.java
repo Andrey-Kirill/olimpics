@@ -70,16 +70,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onStart(){
         loaddata();
-        if(id.equals("")){
+        if(id.equals("") == true){
             uniqueID = UUID.randomUUID().toString();
+            savedata();
             mDataBaseid = FirebaseDatabase.getInstance().getReference(uniqueID);
             favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
-            savedata();
             mDataBaseid.push().setValue(uniqueID);
         }else{
-            idforclasses= id;
+            idforclasses = id;
             mDataBaseid = FirebaseDatabase.getInstance().getReference(id);
-            UserProfile.favoriteOlympiads = Firebase.load_favorite(UserProfile.getFavoriteOlympiads(), mDataBaseid);
+            Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
+            //UserProfile.favoriteOlympiads = Firebase.load_favorite(UserProfile.getFavoriteOlympiads(), mDataBaseid);
 
         }
         super.onStart();
