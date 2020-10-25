@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             idforclasses = id;
             mDataBaseid = FirebaseDatabase.getInstance().getReference(id);
             Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
-            //UserProfile.favoriteOlympiads = Firebase.load_favorite(UserProfile.getFavoriteOlympiads(), mDataBaseid);
+            UserProfile.favoriteOlympiads = Firebase.load_favorite(UserProfile.getFavoriteOlympiads(), mDataBaseid);
 
         }
         super.onStart();
@@ -119,7 +119,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this,Profile.class);
+                startActivity(i);
                 drawer.closeDrawer(GravityCompat.START);
+
             }
         });
 
