@@ -3,28 +3,50 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tolls="http://schemas.android.com/tools">
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/olympiad_item__civ_poster"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_margin="5dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tolls:src="@drawable/ic_launcher_background" />
+    xmlns:tolls="http://schemas.android.com/tools"
+    android:layout_marginLeft="5dp"
+    android:layout_marginStart="5dp">
 
     <TextView
-        android:id="@+id/olympiad_name"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Olympiad name"
         android:textSize="30sp"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/olympiad_item__civ_poster"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="10dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        tolls:layout_editor_absoluteX="0dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/organizer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="organizer"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="level"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="subject" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
