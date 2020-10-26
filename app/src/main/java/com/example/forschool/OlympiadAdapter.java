@@ -74,7 +74,6 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-
             contextMenu.setHeaderTitle(R.string.recycle_view_context_menu_title);
             contextMenu.add(0, 0, 0, R.string.recycle_view_context_menu_favorite);
             contextMenu.add(0, 1, 0, R.string.recycle_view_context_menu_share);

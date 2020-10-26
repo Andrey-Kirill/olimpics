@@ -24,4 +24,16 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Custom">
+        <item name="android:layout_width">382dp</item>
+        <item name="android:layout_height">131dp</item>
+        <item name="android:layout_marginStart">17dp</item>
+        <item name="android:layout_marginLeft">17dp</item>
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:layout_marginEnd">17dp</item>
+        <item name="android:layout_marginRight">17dp</item>
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardBackgroundColor">#d3d3d3</item>
+    </style>
+
 </resources>
