@@ -16,7 +16,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
         <TextView
-            android:id="@+id/favorite_organizator"
+            android:id="@+id/organizator_of_olympiad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -42,7 +42,7 @@
             android:layout_height="420dp">
 
             <TextView
-                android:id="@+id/context_of_favorite_olympic"
+                android:id="@+id/context_of_olympic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/design_default_color_on_secondary" />

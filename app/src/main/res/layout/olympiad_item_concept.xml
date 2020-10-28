@@ -3,39 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tolls="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
+        style="@style/Custom"
+        android:layout_width="382dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/Custom">
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
         <TextView
-            android:id="@+id/name_of_olympiad"
+            android:id="@+id/organizator_of_olympiad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textColor="@color/design_default_color_on_secondary" />
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="24sp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        style="@style/Custom"
         android:layout_width="382dp"
         android:layout_height="428dp"
         android:layout_marginStart="17dp"
         android:layout_marginLeft="17dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="17dp"
         android:layout_marginRight="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
-        style="@style/Custom">
+        android:id="@+id/constraint_layout">
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="380dp"
+            android:layout_height="420dp">
 
             <TextView
                 android:id="@+id/context_of_olympic"
@@ -44,6 +49,26 @@
                 android:textColor="@color/design_default_color_on_secondary" />
         </ScrollView>
 
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        style="@style/Custom"
+        android:layout_width="382dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/name_of_olympiad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="24sp" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
