@@ -17,11 +17,11 @@ public class UserProfile {
 
     public static ArrayList<Olympiad> favoriteOlympiads = new ArrayList<>();
 
-    String name;
-    String surname;
-    String id;
-    String password;
-    String email;
+    private static String name;
+    private static String surname;
+    private static String id;
+    private static String password;
+    private static String email;
 
     private static UserProfile userProfile;
 
@@ -105,6 +105,15 @@ public class UserProfile {
         }
     }
 
+    public static boolean isFavoriteOlympiad(String name) {
+        for (Olympiad olympiad : favoriteOlympiads) {
+            if (olympiad.getShortName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static  ArrayList<Olympiad> getFavoriteOlympiads() {
         return favoriteOlympiads;
     }
@@ -119,43 +128,38 @@ public class UserProfile {
 
 
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
-    public String getSurname() {
+    public static String getSurname() {
         return surname;
     }
 
-    public String getId() {
+    public static String getId() {
         return id;
     }
 
-    public String getPassword() {
+    public static String getPassword() {
         return password;
     }
 
-    public String getEmail() {
+    public static String getEmail() {
         return email;
     }
 
-    public void setFavoriteOlympiads(ArrayList<Olympiad> favoriteOlympiads) {
-        this.favoriteOlympiads = favoriteOlympiads;
+    public static void setName(String name) { name = name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public static void setSurname(String surname) {
+        surname = surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public static void setPassword(String password) {
+        password = password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public static void setEmail(String email) {
+        email = email;
     }
 }

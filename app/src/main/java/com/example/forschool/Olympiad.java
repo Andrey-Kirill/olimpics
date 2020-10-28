@@ -10,9 +10,10 @@ public class Olympiad {
     private String description;
     private String url;
     private String date;
+    private String subject;
+    private String level;
     
 
-    private int level;
     private int poster;
 
     public Olympiad(){
@@ -58,4 +59,19 @@ public class Olympiad {
         this.poster = poster;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
 }

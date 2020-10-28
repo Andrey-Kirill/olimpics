@@ -55,21 +55,26 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
 
     static final class OlympiadViewHolder extends RecyclerView.ViewHolder{
 
-        private final CircleImageView posterCircleImageView;
         private final TextView nameTextView;
+        private final TextView organizerTextView;
+        private final TextView subjectTextView;
+        private final TextView levelTextView;
 
         public OlympiadViewHolder(@NonNull View itemView) {
             super(itemView);
-            posterCircleImageView = itemView.findViewById(R.id.olympiad_item__civ_poster);
-            nameTextView = itemView.findViewById(R.id.olympiad_name);
+            nameTextView = itemView.findViewById(R.id.name);
+            organizerTextView = itemView.findViewById(R.id.organizer);
+            subjectTextView = itemView.findViewById(R.id.subject);
+            levelTextView = itemView.findViewById(R.id.level);
 
             //itemView.setOnCreateContextMenuListener(this);
         }
 
         public void bind(Olympiad olympiad) {
-            posterCircleImageView.setImageResource(olympiad.getPoster());
             nameTextView.setText(olympiad.getShortName());
-
+            organizerTextView.setText(olympiad.getOrganizer());
+            subjectTextView.setText(olympiad.getSubject());
+            levelTextView.setText(olympiad.getLevel());
         }
         /*
 
