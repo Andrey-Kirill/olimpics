@@ -33,7 +33,7 @@
         <item name="android:layout_marginEnd">17dp</item>
         <item name="android:layout_marginRight">17dp</item>
         <item name="cardCornerRadius">10dp</item>
-        <item name="cardBackgroundColor">#d3d3d3</item>
+        <item name="cardBackgroundColor">#CFCECE</item>
     </style>
 
 </resources>

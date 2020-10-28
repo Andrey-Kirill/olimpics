@@ -19,4 +19,5 @@ public class Constants {
     public static String INFORMATICS = "informaticsolympics";
     public static String PHYSICS = "physicsolympics";
     public static String RUSSIAN_LANGUAGE = "russianlanguageolympics";
+    public static String USERS = "users";
 }

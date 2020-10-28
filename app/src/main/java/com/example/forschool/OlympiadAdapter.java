@@ -53,7 +53,7 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
         return olympiads.size();
     }
 
-    static final class OlympiadViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
+    static final class OlympiadViewHolder extends RecyclerView.ViewHolder{
 
         private final CircleImageView posterCircleImageView;
         private final TextView nameTextView;
@@ -63,7 +63,7 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
             posterCircleImageView = itemView.findViewById(R.id.olympiad_item__civ_poster);
             nameTextView = itemView.findViewById(R.id.olympiad_name);
 
-            itemView.setOnCreateContextMenuListener(this);
+            //itemView.setOnCreateContextMenuListener(this);
         }
 
         public void bind(Olympiad olympiad) {
@@ -71,6 +71,7 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
             nameTextView.setText(olympiad.getShortName());
 
         }
+        /*
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
@@ -78,6 +79,8 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
             contextMenu.add(0, 0, 0, R.string.recycle_view_context_menu_favorite);
             contextMenu.add(0, 1, 0, R.string.recycle_view_context_menu_share);
         }
+
+         */
 
     }
 

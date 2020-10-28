@@ -16,7 +16,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
         <TextView
-            android:id="@+id/organizator_of_olympiad"
+            android:id="@+id/favorite_organizator"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -25,7 +25,6 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_context"
         style="@style/Custom"
         android:layout_width="382dp"
         android:layout_height="428dp"
@@ -43,7 +42,7 @@
             android:layout_height="420dp">
 
             <TextView
-                android:id="@+id/context_of_olympic"
+                android:id="@+id/context_of_favorite_olympic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/design_default_color_on_secondary" />
@@ -56,14 +55,14 @@
         style="@style/Custom"
         android:layout_width="382dp"
         android:layout_height="70dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="108dp"
         android:layout_marginEnd="14dp"
         android:layout_marginRight="14dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/name_of_olympiad"
+            android:id="@+id/name_of_favorite_olympiad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

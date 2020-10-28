@@ -21,11 +21,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.UUID;
 
 public class Autenfication extends AppCompatActivity {
-    EditText email;
-    EditText passwod;
+    public static EditText email;
+    public static EditText passwod;
     FirebaseAuth autenfication;
     DatabaseReference mDataBase;
-    String USER_KEY = "russianlanguageolympics";
+    String USER_KEY = "informaticsolympics";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,7 @@ public class Autenfication extends AppCompatActivity {
     }
 
     public void signup(final View v) {
+
         if ((email.getText().toString().isEmpty() && passwod.getText().toString().isEmpty()) == false) {
             autenfication.createUserWithEmailAndPassword(email.getText().toString(), passwod.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override

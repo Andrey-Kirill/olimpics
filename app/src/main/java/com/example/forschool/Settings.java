@@ -3,6 +3,7 @@ package com.example.forschool;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,10 +22,14 @@ public class Settings extends AppCompatActivity {
         mDataBase = FirebaseAuth.getInstance();
         user = mDataBase.getCurrentUser();
     }
-    public void deleteuser(View v){
-        user.delete();
-        user.reload();
-        Intent i = new Intent(getApplicationContext(),Autenfication.class);
-        startActivity(i);
+    public void deleteuser(View v) {
+        if (user != null) {
+            user.delete();
+            user.reload();
+            Intent i = new Intent(getApplicationContext(), Autenfication.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(getApplicationContext(),"Please register in app",Toast.LENGTH_LONG).show();
+    }
     }
 }

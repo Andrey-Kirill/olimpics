@@ -25,7 +25,7 @@ public class UserProfile {
 
     private static UserProfile userProfile;
 
-    private UserProfile(String name, String surname, String password, String email, String id) {
+     UserProfile(String name, String surname, String email, String password, String id) {
         this.name = name;
         this.surname = surname;
         this.password = password;
@@ -33,8 +33,9 @@ public class UserProfile {
         this.id = id;
     }
 
-    private UserProfile(String id) {
-        this.id = id;
+    UserProfile() {
+
+    }
 
 /*
         favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
@@ -42,7 +43,7 @@ public class UserProfile {
         favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
         favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
  */
-    }
+
 
     public static void addOlympiadToFavorite(final Olympiad olympiad) {
         ValueEventListener vListener = new ValueEventListener() {
@@ -60,7 +61,7 @@ public class UserProfile {
                     test.add(user);
                 }
                 for(Olympiad ol:test) {
-                    if (ol.getOrganizer().equals(olympiad.getOrganizer())) {
+                    if (ol.getShortName().equals(olympiad.getShortName()) == true) {
                         OlympiadActivity.added = true;
                         break;
                     }else{
@@ -116,9 +117,7 @@ public class UserProfile {
         userProfile = new UserProfile(name, surname, password, email, id);
     }
 
-    public static void setUserProfile(String id) {
-        userProfile = new UserProfile(id);
-    }
+
 
     public String getName() {
         return name;

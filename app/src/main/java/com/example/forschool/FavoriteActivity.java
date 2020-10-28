@@ -20,7 +20,8 @@ import static com.example.forschool.OlympiadActivity.test;
 public class FavoriteActivity extends AppCompatActivity {
 
     LinearLayoutManager linearLayoutManager;
-    public static OlympiadAdapter olympiadAdapter;
+    OlympiadAdapter olympiadAdapter;
+    public static int pos;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +33,8 @@ public class FavoriteActivity extends AppCompatActivity {
             @Override
             public void onOlympiadClick(int position) {
                 Olympiad selectedOlympiad = UserProfile.getUserProfile().getFavoriteOlympiads().get(position);
-
-                Intent intent = new Intent(FavoriteActivity.this, OlympiadActivity.class);
+                pos = position;
+                Intent intent = new Intent(FavoriteActivity.this,FavoriteCheckActivity.class);
                 startActivity(intent);
 
                 Toast.makeText(getApplicationContext(), "Olympiad " + selectedOlympiad.getShortName() + " has selected", Toast.LENGTH_SHORT).show();

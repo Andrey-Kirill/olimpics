@@ -23,6 +23,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,14 +47,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+
 import static com.example.forschool.UserProfile.favoriteOlympiads;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    final int CONTEXT_MENU_FAVORITE = 0;
-    final int CONTEXT_MENU_SHARE = 1;
-
+    final static int CONTEXT_MENU_FAVORITE = 0;
+    final static int CONTEXT_MENU_SHARE = 1;
+    public static DatabaseReference data_for_firebase = FirebaseDatabase.getInstance().getReference(Constants.USERS);
     DrawerLayout drawer;
     RecyclerView recyclerView;
     public static OlympiadAdapter olympiadAdapter;
@@ -67,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static  String id = "";
     public static String idforclasses;
     public static int number_of_olympiad;
+    public static TextView tx;
+    public static TextView tx1;
+    FirebaseUser user;
     @Override
     public void onStart(){
         loaddata();
@@ -74,14 +80,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             uniqueID = UUID.randomUUID().toString();
             savedata();
             mDataBaseid = FirebaseDatabase.getInstance().getReference(uniqueID);
-            favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
-            mDataBaseid.push().setValue(uniqueID);
+            //favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
+           //mDataBaseid.push().setValue(uniqueID);
         }else{
             idforclasses = id;
             mDataBaseid = FirebaseDatabase.getInstance().getReference(id);
             Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
             UserProfile.favoriteOlympiads = Firebase.load_favorite(UserProfile.getFavoriteOlympiads(), mDataBaseid);
-
         }
         super.onStart();
     }
@@ -107,9 +112,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .setAction("Action", null).show();
             }
         });
-
+        user = FirebaseAuth.getInstance().getCurrentUser();
         drawer = findViewById(R.id.drawer_layout);
-
         //add navigation view
         NavigationView navigationView = findViewById(R.id.nav_view);
         // set listener to our navigation view
@@ -122,10 +126,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent i = new Intent(MainActivity.this,Profile.class);
                 startActivity(i);
                 drawer.closeDrawer(GravityCompat.START);
-
             }
         });
 
+        tx = headerview.findViewById(R.id.name_user);
+        tx1 = headerview.findViewById(R.id.mail);
+        tx1.setText(user.getEmail());
+        Firebase.load_name_and_surname_for_main();
 
         recyclerView = findViewById(R.id.activity_main__rv_olympiad_list);
         olympiadAdapter = new OlympiadAdapter(olympiads, new OlympiadAdapter.Listener() {
@@ -180,27 +187,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.math) {
             mDataBase = FirebaseDatabase.getInstance().getReference(Constants.MATH);
             Toast.makeText(getApplicationContext(),"Math olympics",Toast.LENGTH_SHORT).show();
-            olympiads = Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
+            Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
             toolbar.setTitle("Math");
         }
 
         if(id == R.id.informatics){
             mDataBase = FirebaseDatabase.getInstance().getReference(Constants.INFORMATICS);
             Toast.makeText(getApplicationContext(),"Informatics olympics",Toast.LENGTH_SHORT).show();
-            olympiads = Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
+            Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
             toolbar.setTitle("Informatics");
         }
 
         if(id == R.id.physics){
             mDataBase = FirebaseDatabase.getInstance().getReference(Constants.PHYSICS);
             Toast.makeText(getApplicationContext(),"Physics olympics",Toast.LENGTH_SHORT).show();
-            olympiads = Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
+            Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
             toolbar.setTitle("Physics");
         }
         if(id == R.id.russian_language){
             mDataBase = FirebaseDatabase.getInstance().getReference(Constants.RUSSIAN_LANGUAGE);
             Toast.makeText(getApplicationContext(),"Russian language olympics",Toast.LENGTH_SHORT).show();
-            olympiads = Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
+            Firebase.get_about_olympics(olympiads,mDataBase,olympiadAdapter);
             toolbar.setTitle("Russian language");
         }
         return true;
@@ -228,18 +235,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawer.closeDrawer(GravityCompat.START);
         return false;
-    }
-
-    @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-        Log.d("name", "test");
-        if (item.getItemId() == CONTEXT_MENU_FAVORITE) {
-            Toast.makeText(this, "favorite", Toast.LENGTH_SHORT).show();
-        }
-        if (item.getItemId() == CONTEXT_MENU_SHARE) {
-            Toast.makeText(this, "share", Toast.LENGTH_SHORT).show();
-        }
-
-        return super.onContextItemSelected(item);
     }
 }
