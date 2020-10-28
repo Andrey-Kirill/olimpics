@@ -17,15 +17,20 @@ public class UserProfile {
 
     public static ArrayList<Olympiad> favoriteOlympiads = new ArrayList<>();
 
-    private static String name;
-    private static String surname;
-    private static String id;
-    private static String password;
-    private static String email;
+   public  String name;
 
-    private static UserProfile userProfile;
+    public  String surname;
+    public  String id;
+    public  String password;
+    public  String email;
 
-     UserProfile(String name, String surname, String email, String password, String id) {
+
+
+    public UserProfile() {
+
+    }
+
+    public  UserProfile(String name, String surname, String email, String password, String id) {
         this.name = name;
         this.surname = surname;
         this.password = password;
@@ -33,9 +38,7 @@ public class UserProfile {
         this.id = id;
     }
 
-    UserProfile() {
 
-    }
 
 /*
         favoriteOlympiads.add(new Olympiad("test", "test", "test", R.drawable.ic_launcher_background));
@@ -118,35 +121,10 @@ public class UserProfile {
         return favoriteOlympiads;
     }
 
-    public static UserProfile getUserProfile() {
-        return userProfile;
-    }
-
-    public static void setUserProfile(String name, String surname, String password, String email, String id) {
-        userProfile = new UserProfile(name, surname, password, email, id);
-    }
 
 
 
-    public static String getName() {
-        return name;
-    }
 
-    public static String getSurname() {
-        return surname;
-    }
-
-    public static String getId() {
-        return id;
-    }
-
-    public static String getPassword() {
-        return password;
-    }
-
-    public static String getEmail() {
-        return email;
-    }
 
     public static void setName(String name) { name = name;
     }

@@ -121,9 +121,9 @@ public class Firebase {
                 while (iter.hasNext()){
                     UserProfile opr = iter.next();
                     if(opr.id.equals(MainActivity.idforclasses)){
-                        MainActivity.tx.setText(opr.getName()+" "+opr.getSurname());
-                        Profile.name.setText(opr.getName());
-                        Profile.second_name.setText(opr.getSurname());
+                        MainActivity.tx.setText(opr.name+" "+opr.surname);
+                        Profile.name.setText(opr.name);
+                        Profile.second_name.setText(opr.surname);
                     }
                 }
 
@@ -156,7 +156,7 @@ public class Firebase {
                 while (iter.hasNext()){
                     UserProfile opr = iter.next();
                     if(opr.id.equals(MainActivity.idforclasses)){
-                        MainActivity.tx.setText(opr.getName()+" "+opr.getSurname());
+                        MainActivity.tx.setText(opr.name+" "+opr.surname);
                     }
                 }
 
