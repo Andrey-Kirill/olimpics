@@ -63,14 +63,7 @@ public class UserProfile {
 
                     test.add(user);
                 }
-                for(Olympiad ol:test) {
-                    if (ol.getShortName().equals(olympiad.getShortName()) == true) {
-                        OlympiadActivity.added = true;
-                        break;
-                    }else{
-                        OlympiadActivity.added = false;
-                    }
-                }
+
 
                 //notify our adapter if we got new data
             }
@@ -81,15 +74,8 @@ public class UserProfile {
         };
         mDataBaseid.addValueEventListener(vListener);
 
-        if(OlympiadActivity.added == false) {
-            UserProfile.favoriteOlympiads.add(olympiad);
-            mDataBaseid.removeValue();
-
-            ArrayList<Olympiad> a = UserProfile.favoriteOlympiads;
-            for (Olympiad ol : a) {
-                mDataBaseid.push().setValue(ol);
-            }
-            OlympiadActivity.added = true;
+        if(OlympiadActivity.added == true) {
+            mDataBaseid.push().setValue(olympiad);
         }
 
     }
