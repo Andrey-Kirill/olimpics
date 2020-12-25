@@ -79,7 +79,7 @@ public class OlympiadActivity extends AppCompatActivity {
         });
         if(UserProfile.favoriteOlympiads.size() == 0) {
             Toast.makeText(this, Integer.toString(UserProfile.favoriteOlympiads.size()), Toast.LENGTH_LONG).show();
-            mDataBaseid.push().setValue(new Olympiad("test","test","test12",12));
+            //mDataBaseid.push().setValue(new Olympiad("test","test","test12",12));
         }
         name_of_olympic.setText(olympiads.get(MainActivity.number_of_olympiad).getShortName());
         organizator.setText(olympiads.get(MainActivity.number_of_olympiad).getOrganizer());
@@ -128,6 +128,7 @@ public class OlympiadActivity extends AppCompatActivity {
         mDataBaseid.removeValue();
         ArrayList<Olympiad> a = UserProfile.favoriteOlympiads;
         for(Olympiad ol:a){
+            ol.btmp = null;
             mDataBaseid.push().setValue(ol);
         }
     }

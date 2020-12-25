@@ -23,9 +23,11 @@ import java.util.UUID;
 public class Autenfication extends AppCompatActivity {
     public static EditText email;
     public static EditText passwod;
+    public static String pass_for_classes = "";
+    public static String em_for_classes = "";
     FirebaseAuth autenfication;
     DatabaseReference mDataBase;
-    String USER_KEY = "informaticsolympics";
+    String USER_KEY = "physicsolympics";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,8 @@ public class Autenfication extends AppCompatActivity {
     public void signup(final View v) {
 
         if ((email.getText().toString().isEmpty() && passwod.getText().toString().isEmpty()) == false) {
+            pass_for_classes = passwod.getText().toString();
+            em_for_classes = email.getText().toString();
             autenfication.createUserWithEmailAndPassword(email.getText().toString(), passwod.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -61,6 +65,8 @@ public class Autenfication extends AppCompatActivity {
     }
     public void signin(final View v) {
         if ((email.getText().toString().isEmpty() && passwod.getText().toString().isEmpty()) == false) {
+            pass_for_classes = passwod.getText().toString();
+            em_for_classes = email.getText().toString();
             autenfication.signInWithEmailAndPassword(email.getText().toString(), passwod.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -83,9 +89,10 @@ public class Autenfication extends AppCompatActivity {
     public void push(View v){
         String uniqueID = UUID.randomUUID().toString();
         String id = mDataBase.getKey();
+
         String txt = email.getText().toString();
         int poster = R.drawable.ic_launcher_background;
-        Olympiad user = new Olympiad(id,txt,"test1",poster);
+        Olympiad user = new Olympiad("poff",txt,"test1",poster);
 
         mDataBase.push().setValue(user);
         Toast.makeText(v.getContext(),"ok",Toast.LENGTH_SHORT).show();

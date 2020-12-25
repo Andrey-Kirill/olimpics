@@ -128,12 +128,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
-
+    if(user.getEmail() != null) {
         tx = headerview.findViewById(R.id.name_user);
         tx1 = headerview.findViewById(R.id.mail);
         tx1.setText(user.getEmail());
         Firebase.load_name_and_surname_for_main();
-
+    }
         recyclerView = findViewById(R.id.activity_main__rv_olympiad_list);
         olympiadAdapter = new OlympiadAdapter(olympiads, new OlympiadAdapter.Listener() {
             @Override

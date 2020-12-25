@@ -1,5 +1,6 @@
 package com.example.forschool;
 
+import android.graphics.Bitmap;
 import android.media.Image;
 
 public class Olympiad {
@@ -12,7 +13,8 @@ public class Olympiad {
     private String date;
     private String subject;
     private String level;
-    
+    public static Bitmap btmp;
+
 
     private int poster;
 
@@ -73,5 +75,9 @@ public class Olympiad {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    public Bitmap getBitmap(){
+        return this.btmp;
     }
 }

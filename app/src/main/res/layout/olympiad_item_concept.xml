@@ -11,6 +11,8 @@
         android:layout_width="382dp"
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/colorGrayDark"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2">
@@ -36,6 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:cardBackgroundColor="@color/colorGrayDark"
        >
 
         <ScrollView
@@ -60,7 +63,8 @@
         android:layout_marginEnd="14dp"
         android:layout_marginRight="14dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/colorGrayDark">
 
         <TextView
             android:id="@+id/name_of_olympiad"

@@ -42,7 +42,7 @@ public class Profile extends AppCompatActivity {
         users = Firebase.load_user(users,mdatabase);
         nameload = name.getText().toString();
         secondnameload = second_name.getText().toString();
-        if((nameload.equals("") || secondnameload.equals("")) == true) {
+        if((nameload.isEmpty() || secondnameload.isEmpty()) == true) {
             Toast.makeText(getApplicationContext(), "Please enter your data", Toast.LENGTH_LONG).show();
         }
     }
@@ -52,12 +52,13 @@ public class Profile extends AppCompatActivity {
             UserProfile up = iter.next();
             if(up.id.equals(MainActivity.idforclasses)){
                 save = false;
+                iter.remove();
                 break;
             }else{
                 save = true;
             }
         }
-        Toast.makeText(getApplicationContext(),Integer.toString(users.size()),Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),Integer.toString(users.size()),Toast.LENGTH_LONG).show();
         if(save == true) {
             String name = this.name.getText().toString();
             String second_name = this.second_name.getText().toString();
@@ -70,6 +71,16 @@ public class Profile extends AppCompatActivity {
                 }
             } else {
                 Toast.makeText(getApplicationContext(), "Please enter your data", Toast.LENGTH_LONG).show();
+            }
+        }else{
+            if((this.name.getText().toString().equals("") || this.second_name.getText().toString().equals("")) == false){
+                mdatabase.removeValue();
+                UserProfile user = new UserProfile(this.name.getText().toString(),this.second_name.getText().toString(),Autenfication.em_for_classes,Autenfication.pass_for_classes,MainActivity.idforclasses);
+                //mdatabase.push().setValue(user);
+                users.add(user);
+                for(UserProfile us:users){
+                    mdatabase.push().setValue(us);
+                }
             }
         }
         /*

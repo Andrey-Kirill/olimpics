@@ -35,5 +35,7 @@
         <item name="cardCornerRadius">10dp</item>
         <item name="cardBackgroundColor">#CFCECE</item>
     </style>
-
+    <style name="Olympiad">
+        <item name="cardCornerRadius">10dp</item>
+    </style>
 </resources>

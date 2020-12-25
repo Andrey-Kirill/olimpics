@@ -75,7 +75,9 @@ public class UserProfile {
         mDataBaseid.addValueEventListener(vListener);
 
         if(OlympiadActivity.added == true) {
+            olympiad.btmp = null;
             mDataBaseid.push().setValue(olympiad);
+            favoriteOlympiads.add(olympiad);
         }
 
     }

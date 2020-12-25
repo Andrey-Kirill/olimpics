@@ -1,15 +1,20 @@
 package com.example.forschool;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.ContextMenu;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,8 +22,9 @@ import java.util.Iterator;
 import static com.example.forschool.MainActivity.mDataBaseid;
 
 public class Firebase {
-
+    public static Olympiad user;
     public static ArrayList<Olympiad> get_about_olympics(final ArrayList<Olympiad> olympics, DatabaseReference database, final OlympiadAdapter adapter) {
+
         ValueEventListener vListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -27,10 +33,21 @@ public class Firebase {
                 }
                 //if we received something then delete old data and new data from firebase
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Olympiad user = ds.getValue(Olympiad.class);
+                    user = ds.getValue(Olympiad.class);
                     assert user != null;
+
+                    FirebaseStorage storage = FirebaseStorage.getInstance();
+                    StorageReference ref = storage.getReference().child(user.getShortName()+".png");
+                    ref.getBytes(2048 * 2048).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap bt = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            user.btmp = bt;
+                        }
+                    });
                     olympics.add(user);
                 }
+
 
                 adapter.notifyDataSetChanged();
                 //notify our adapter if we got new data
@@ -121,9 +138,10 @@ public class Firebase {
                 while (iter.hasNext()){
                     UserProfile opr = iter.next();
                     if(opr.id.equals(MainActivity.idforclasses)){
-                        MainActivity.tx.setText(opr.name+" "+opr.surname);
+                        //MainActivity.tx.setText(opr.name+" "+opr.surname);
                         Profile.name.setText(opr.name);
                         Profile.second_name.setText(opr.surname);
+                        break;
                     }
                 }
 

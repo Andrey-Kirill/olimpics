@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -59,6 +60,7 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
         private final TextView organizerTextView;
         private final TextView subjectTextView;
         private final TextView levelTextView;
+        private final ImageView img;
 
         public OlympiadViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +68,7 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
             organizerTextView = itemView.findViewById(R.id.organizer);
             subjectTextView = itemView.findViewById(R.id.subject);
             levelTextView = itemView.findViewById(R.id.level);
+            img  = itemView.findViewById(R.id.imageView5);
 
             //itemView.setOnCreateContextMenuListener(this);
         }
@@ -75,6 +78,7 @@ public class OlympiadAdapter extends RecyclerView.Adapter<OlympiadAdapter.Olympi
             organizerTextView.setText(olympiad.getOrganizer());
             subjectTextView.setText(olympiad.getSubject());
             levelTextView.setText(olympiad.getLevel());
+            img.setImageBitmap(olympiad.getBitmap());
         }
         /*
 
